@@ -3,14 +3,13 @@ pipeline{
     stages {
         stage("Compile"){
             steps{
-                bat "./gradlew compileJava"
+                sh "./gradlew compileJava"
             }
         }
         stage("Unit test"){
-            setps{
-                bat "./gradlew test"
+            steps{
+                sh "./gradlew test"
             }
         }
     }
-
 }
