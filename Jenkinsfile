@@ -7,7 +7,7 @@ pipeline{
             }
         }
         stage("Unit test"){
-            setps{
+            steps{
                 bat "./gradlew test"
             }
         }
