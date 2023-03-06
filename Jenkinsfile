@@ -39,7 +39,7 @@ pipeline{
         }
         stage("Docker build"){
             steps{
-                bat "docker build -t hamzabakkour/temp"
+                bat "docker build -t hamzabakkour/temp ."
             }
         }
     }
