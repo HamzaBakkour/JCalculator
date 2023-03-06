@@ -32,5 +32,20 @@ pipeline{
                 ])
             }
         }
+        stage("Package"){
+            steps{
+                bat "./gradlew build"
+            }
+        }
+        stage("Docker build"){
+            steps{
+                bat "docker build -t hamzabakkour/temp ."
+            }
+        }
+        stage("Docker push"){
+            steps{
+                bat "docker push hamzabakkour/temp"
+            }
+        }
     }
 }
