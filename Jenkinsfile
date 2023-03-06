@@ -47,5 +47,10 @@ pipeline{
                 bat "docker push hamzabakkour/temp"
             }
         }
+        stage("Deploy to staging"){
+            steps{
+                bat "docker run -d --rm -p 8765:8080 --name temp hamzabakkour/temp"
+            }
+        }
     }
 }
