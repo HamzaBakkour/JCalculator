@@ -52,5 +52,17 @@ pipeline{
                 bat "docker run -d --rm -p 8765:8080 --name temp hamzabakkour/temp"
             }
         }
+        stage("Acceptance test"){
+            steps{
+                sleep 60
+                bat "./acceptance_test.ps1"
+            }
+        }
+    }
+
+    post {
+        always{
+            bat 'docker stop temp' 
+        } 
     }
 }
