@@ -43,7 +43,7 @@ pipeline{
             }
         }
         stage("Docker push"){
-            stage{
+            steps{
                 bat "docker push hamzabakkour/temp"
             }
         }
