@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan()
 public class TempApplication {
+	// private static final String constant = "constant";
 	public static void main(String[] args) {
 		SpringApplication.run(TempApplication.class, args);
 	}
