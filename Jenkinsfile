@@ -42,5 +42,10 @@ pipeline{
                 bat "docker build -t hamzabakkour/temp ."
             }
         }
+        stage("Docker push"){
+            stage{
+                bat "docker push hamzabakkour/temp"
+            }
+        }
     }
 }
