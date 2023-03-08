@@ -56,6 +56,11 @@ pipeline{
             steps{
                 sleep 60
                 bat "./gradlew acceptanceTest -D calculator.url=http://localhost:8765"
+                publishHTML (target: [
+                    reportDir: 'build/reports/tests/acceptanceTest',
+                    reportFiles : 'index.html',
+                    reportName: "Acceptance Report"
+                ])
             }
         }
     }
