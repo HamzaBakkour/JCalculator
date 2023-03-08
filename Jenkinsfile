@@ -55,7 +55,7 @@ pipeline{
         stage("Acceptance test"){
             steps{
                 sleep 60
-                bat "./acceptance_test.ps1"
+                bat "./gradlew acceptanceTest -D calculator.url=http://localhost:8765"
             }
         }
     }
