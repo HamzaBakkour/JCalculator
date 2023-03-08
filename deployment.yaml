@@ -22,7 +22,7 @@ spec:
     spec:
       containers: #Each Pod contains a Docker container
       - name: calculator #-> the container is named calculator
-        image: hamzabakkour/temp #-> created from the image
+        image: hamzabakkour/temp:caching #-> created from the image
         ports: #-> the Pod exposes the container port,
         - containerPort: 8080
         readinessProbe: #The endpoint of the container to check for readines
