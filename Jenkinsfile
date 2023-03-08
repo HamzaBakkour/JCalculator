@@ -47,5 +47,27 @@ pipeline{
                 bat "docker push hamzabakkour/temp"
             }
         }
+        stage("Deploy to staging"){
+            steps{
+                bat "docker run -d --rm -p 8765:8080 --name temp hamzabakkour/temp"
+            }
+        }
+        stage("Acceptance test"){
+            steps{
+                sleep 60
+                bat "./gradlew acceptanceTest -D calculator.url=http://localhost:8765"
+                publishHTML (target: [
+                    reportDir: 'build/reports/tests/acceptanceTest',
+                    reportFiles : 'index.html',
+                    reportName: "Acceptance Report"
+                ])
+            }
+        }
+    }
+
+    post {
+        always{
+            bat 'docker stop temp' 
+        } 
     }
 }
