@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: calculator-deployment #Deployment name
+  labels:
+    app: calculator
+spec:
+  replicas: 3 #Three identical Pods
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: #Update process
+      maxUnavailable: 25% #->
+      maxSurge: 0 #->The maximux number of Pods that can be created over the desired one (3)
+  selector: #Define how the deployment finds Pods
+    matchLabels: #-> by labels
+      app: calculator
+  template: #Specification for each Pod
+    metadata:
+      labels: #Each Pod is labeled with app: calculator
+        app: calculator
+        label: label
+    spec:
+      containers: #Each Pod contains a Docker container
+      - name: calculator #-> the container is named calculator
+        image: hamzabakkour/temp #-> created from the image
+        ports: #-> the Pod exposes the container port,
+        - containerPort: 8080
+        readinessProbe: #The endpoint of the container to check for readines
+          httpGet:
+            path: /sum?a=1&b=2
+            port: 8080
