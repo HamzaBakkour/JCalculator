@@ -39,17 +39,17 @@ pipeline{
         }
         stage("Docker build"){
             steps{
-                bat "docker build -t hamzabakkour/temp ."
+                bat "docker build -t hamzabakkour/temp:${BUILD_TIMESTAMP} ."
             }
         }
         stage("Docker push"){
             steps{
-                bat "docker push hamzabakkour/temp"
+                bat "docker push hamzabakkour/temp:${BUILD_TIMESTAMP}"
             }
         }
         stage("Deploy to staging"){
             steps{
-                bat "docker run -d --rm -p 8765:8080 --name temp hamzabakkour/temp"
+                bat "docker run -d --rm -p 8765:8080 --name temp hamzabakkour/temp:${BUILD_TIMESTAMP}"
             }
         }
         stage("Acceptance test"){
@@ -67,7 +67,7 @@ pipeline{
 
     post {
         always{
-            bat 'docker stop temp' 
+            bat 'Docker stop temp' 
         } 
     }
 }
